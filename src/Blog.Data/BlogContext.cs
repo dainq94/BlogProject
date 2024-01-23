@@ -3,7 +3,6 @@ using Blog.Core.Domain.NewFolder.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Blog.Data
 {
@@ -33,28 +32,28 @@ namespace Blog.Data
 
         }
 
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
-        {
-            var entries = ChangeTracker.Entries()
-                .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
-            foreach (var entityEntry in entries)
-            {
-                var dateCreateProp = entityEntry.Entity.GetType().GetProperty("DateCreated");
-                if (entityEntry.State == EntityState.Added &&
-                    dateCreateProp != null)
-                {
-                    dateCreateProp.SetValue(entityEntry.Entity, DateTime.Now);
-                }
-                var modifiedDateProp = entityEntry.Entity.GetType().GetProperty("ModifiedDate");
-                if (entityEntry.State == EntityState.Modified && modifiedDateProp != null)
-                {
+        //public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        //{
+        //    var entries = ChangeTracker.Entries()
+        //        .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
+        //    foreach (var entityEntry in entries)
+        //    {
+        //        var dateCreateProp = entityEntry.Entity.GetType().GetProperty("DateCreated");
+        //        if (entityEntry.State == EntityState.Added &&
+        //            dateCreateProp != null)
+        //        {
+        //            dateCreateProp.SetValue(entityEntry.Entity, DateTime.Now);
+        //        }
+        //        var modifiedDateProp = entityEntry.Entity.GetType().GetProperty("ModifiedDate");
+        //        if (entityEntry.State == EntityState.Modified && modifiedDateProp != null)
+        //        {
 
-                    modifiedDateProp.SetValue(entityEntry.Entity, DateTime.Now);
-                }
+        //            modifiedDateProp.SetValue(entityEntry.Entity, DateTime.Now);
+        //        }
 
-            }
-            return base.SaveChangesAsync(cancellationToken);
-        }
+        //    }
+        //    return base.SaveChangesAsync(cancellationToken);
+        //}
 
     }
 }
