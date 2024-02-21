@@ -28,8 +28,6 @@ namespace Blog.Data
             builder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.RoleId, x.UserId });
             builder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => new { x.UserId });
 
-
-
         }
 
         //public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
@@ -37,7 +35,7 @@ namespace Blog.Data
         //    var entries = ChangeTracker.Entries()
         //        .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
         //    foreach (var entityEntry in entries)
-        //    {
+        //    {  
         //        var dateCreateProp = entityEntry.Entity.GetType().GetProperty("DateCreated");
         //        if (entityEntry.State == EntityState.Added &&
         //            dateCreateProp != null)

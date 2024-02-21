@@ -10,15 +10,19 @@ namespace Blog.Core.Domain.Content
     {
         [Key]
         public Guid Id { get; set; }
+
         [Required]
         [MaxLength(250)]
         public required string Name { get; set; }
+
         [Required]
         [MaxLength(250)]
         [Column(TypeName = "varchar(250)")]
         public required string Slug { get; set; }
+
         [MaxLength(500)]
         public string? Description { get; set; }
+
         [Required]
         public Guid CategoryId { get; set; }
 

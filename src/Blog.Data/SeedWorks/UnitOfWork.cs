@@ -13,6 +13,7 @@ namespace Blog.Data.SeedWorks
         {
             this.context = context;
             Posts = new PostRepository(context, mapper);
+
         }
 
         public IPostRepository Posts { get; private set; }

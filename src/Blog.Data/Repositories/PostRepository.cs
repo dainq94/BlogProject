@@ -20,6 +20,7 @@ namespace Blog.Data.Repositories
         }
         public Task<List<Post>> GetPopularPostsAsync(int count)
         {
+
             return context.Posts.OrderByDescending(x => x.ViewCount).Take(count).ToListAsync();
         }
 
